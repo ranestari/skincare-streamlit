@@ -6,7 +6,7 @@ import plotly.express as px
 st.set_page_config(page_title="Skincare Review Dashboard", layout="wide")
 
 # Load and clean data
-df = pd.read_csv("skincare_merged.csv")
+df = pd.read_csv("final project/skincare_merged.csv")
 df = df.dropna(subset=['Product', 'Review', 'Rating', 'Merk', 'Category'])
 
 
