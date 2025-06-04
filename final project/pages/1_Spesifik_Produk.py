@@ -8,7 +8,7 @@ st.markdown("A visual explorer for user-submitted skincare reviews. Dive into ra
 
 
 # Load and clean data
-df = pd.read_csv("skincare_merged.csv")
+df = pd.read_csv("final project/skincare_merged.csv")
 df = df.dropna(subset=['Product', 'Review', 'Rating', 'Merk', 'Category'])
 
 # Filter options
