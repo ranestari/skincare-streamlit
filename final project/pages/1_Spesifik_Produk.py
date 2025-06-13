@@ -97,7 +97,7 @@ else:
     # Ambil stopwords bahasa Indonesia
     stop_words = set(stopwords.words('indonesian'))
     # stopword kustom 
-    with open("stoplist.txt", "r", encoding="utf-8") as f:
+    with open("final project/stoplist.txt", "r", encoding="utf-8") as f:
         custom_stoplist = set([line.strip() for line in f if line.strip()])
 
     stop_words.update(custom_stoplist)
