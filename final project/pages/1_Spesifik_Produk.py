@@ -69,3 +69,31 @@ else:
         st.plotly_chart(fig, use_container_width=True)
     else:
         st.info("No rating data available for this product.")
+
+    # Section: Word Cloud Bahasa Indonesia
+    st.subheader("☁️ Word Cloud Ulasan Pengguna")
+    st.caption("Visualisasi kata yang paling sering muncul dalam ulasan (setelah preprocessing sederhana).")
+
+    # Gabungkan semua ulasan
+    all_text = ' '.join(filtered_df['Review'].astype(str).tolist())
+
+    # Preprocessing:
+    all_text = all_text.lower()
+    all_text = all_text.translate(str.maketrans('', '', string.punctuation + '0123456789'))
+
+    # Ambil stopwords bahasa Indonesia
+    stop_words = set(stopwords.words('indonesian'))
+    # stopword kustom 
+    stop_words.update(['banget', 'sih', 'aja', 'ya', 'udah', 'bgt'])
+
+    # Tokenisasi, hapus stopword, filter token terlalu pendek
+    tokens = [word for word in all_text.split() if word not in stop_words and len(word) > 2 and word.isalpha()]
+
+    processed_text = ' '.join(tokens)
+
+    # tampilkan wordcloud
+    wc = WordCloud(width=800, height=400, background_color='white', collocations=False, max_words=100, font_path=None).generate(processed_text)
+    fig, ax = plt.subplots(figsize=(10, 5))
+    ax.imshow(wc, interpolation='bilinear')
+    ax.axis("off")
+    st.pyplot(fig)
