@@ -7,6 +7,14 @@ import nltk
 from nltk.corpus import stopwords
 import string
 
+
+
+try:
+    stop_words = set(stopwords.words('indonesian'))
+except LookupError:
+    nltk.download('stopwords')
+    stop_words = set(stopwords.words('indonesian'))
+
 st.set_page_config(page_title="Skincare Product Explorer", layout="wide")
 st.title("🧴 Skincare Review Dashboard")
 st.markdown("A visual explorer for user-submitted skincare reviews. Dive into ratings, favorites, and product feedback.")
